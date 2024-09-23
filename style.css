@@ -97,6 +97,30 @@ p {
     background-color: #cb6ec2;
 }
 
+/* Delete Button Styles */
+.delete-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff4d4d; /* Red background */
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 100px; /* Space between query text and button */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+.delete-btn:hover {
+    background-color: #e63939; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge the button */
+}
+
+.delete-btn:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.5); /* Add custom focus outline */
+}
+
+
 /* Search History Styles */
 #search-history {
     list-style-type: none;

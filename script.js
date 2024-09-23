@@ -10,9 +10,22 @@ let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
 // Function to update the display of search history
 function updateSearchHistory() {
     searchHistory.innerHTML = ''; // Clear current history
+
+    // Loop through history and create list items with delete buttons
     history.forEach((query, index) => {
         const li = document.createElement('li');
-        li.textContent = query;
+        li.classList.add('history-item');
+
+        const queryText = document.createElement('span');
+        queryText.textContent = query;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('delete-btn');
+        deleteButton.addEventListener('click', () => deleteHistoryItem(index));
+
+        li.appendChild(queryText);
+        li.appendChild(deleteButton);
         searchHistory.appendChild(li);
     });
 }
@@ -36,7 +49,19 @@ function performSearch() {
     searchInput.value = '';
 }
 
-// Clear search history
+// Delete individual search history item
+function deleteHistoryItem(index) {
+    // Remove the item from history array
+    history.splice(index, 1);
+
+    // Update localStorage
+    localStorage.setItem('searchHistory', JSON.stringify(history));
+
+    // Re-render search history
+    updateSearchHistory();
+}
+
+// Clear all search history
 function clearSearchHistory() {
     history = [];
     localStorage.removeItem('searchHistory');
